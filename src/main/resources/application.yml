@@ -1,0 +1,38 @@
+server:
+  port: ${PORT:8761}
+
+eureka:
+  instance:
+    hostname: icollect
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://icollect/eureka/,http://euda/eureka/,http://report/eureka/,http://jobs/eureka
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+spring:
+  application:
+    name: eureka
+    
+---
+spring:
+  profiles: peer1
+eureka:
+  instance:
+    hostname: euda
+
+---
+spring:
+  profiles: peer2
+eureka:
+  instance:
+    hostname: report
+
+---
+spring:
+  profiles: peer3
+eureka:
+  instance:
+    hostname: jobs
